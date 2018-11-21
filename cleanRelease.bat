@@ -1,0 +1,1 @@
+del Release\*.pdb /s

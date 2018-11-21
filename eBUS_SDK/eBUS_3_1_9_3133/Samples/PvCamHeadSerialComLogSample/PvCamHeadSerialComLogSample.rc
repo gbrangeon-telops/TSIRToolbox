@@ -1,0 +1,223 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Canada) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENC)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_CAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENC)\r\n"
+    "LANGUAGE 9, 4\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\PvCamHeadSerialComLogSample.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\PvCamHeadSerialComLogSample.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About PvCamHeadSerialComLogSample"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "PvCamHeadSerialComLogSample Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2010",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,16,WS_GROUP
+END
+
+IDD_PVCAMHEADSERIALCOMLOGSAMPLE_DIALOG DIALOGEX 0, 0, 461, 359
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "PvCamHeadSerialComLogSample"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Select / Connect",IDC_CONNECT_BUTTON,10,16,86,16
+    PUSHBUTTON      "Disconnect",IDC_DISCONNECT_BUTTON,97,16,87,16,WS_DISABLED
+    LTEXT           "IP address",IDC_STATIC,10,41,45,8
+    EDITTEXT        IDC_IP_EDIT,65,37,119,14,ES_AUTOHSCROLL | ES_READONLY | WS_DISABLED
+    LTEXT           "MAC address",IDC_STATIC,10,58,50,8
+    EDITTEXT        IDC_MAC_EDIT,65,55,119,14,ES_AUTOHSCROLL | ES_READONLY | WS_DISABLED
+    LTEXT           "Manufacturer",IDC_STATIC,10,75,50,8
+    EDITTEXT        IDC_MANUFACTURER_EDIT,65,72,119,14,ES_AUTOHSCROLL | ES_READONLY | WS_DISABLED
+    LTEXT           "Model",IDC_STATIC,10,93,44,8
+    EDITTEXT        IDC_MODEL_EDIT,65,90,119,14,ES_AUTOHSCROLL | ES_READONLY | WS_DISABLED
+    LTEXT           "Name",IDC_STATIC,10,110,44,8
+    EDITTEXT        IDC_NAME_EDIT,65,107,119,14,ES_AUTOHSCROLL | ES_READONLY | WS_DISABLED
+    GROUPBOX        "Connection",IDC_STATIC,4,4,187,123
+    LTEXT           "Mode",IDC_STATIC,10,144,55,8
+    COMBOBOX        IDC_MODE,66,141,118,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Channel",IDC_STATIC,9,160,56,8
+    COMBOBOX        IDC_CHANNEL,66,157,118,30,CBS_DROPDOWNLIST | CBS_SORT | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Play",IDC_START,10,173,86,26
+    PUSHBUTTON      "Stop",IDC_STOP,98,173,86,26
+    GROUPBOX        "Parameters and Controls",IDC_CONTROL_GROUP,4,206,187,146
+    PUSHBUTTON      "Communication control",IDC_LINK_BUTTON,10,218,174,17,WS_DISABLED
+    PUSHBUTTON      "GEV Device control",IDC_DEVICE_BUTTON,10,237,174,17,WS_DISABLED
+    PUSHBUTTON      "Image stream control",IDC_STREAMPARAMS_BUTTON,10,256,174,17,WS_DISABLED
+    GROUPBOX        "Display",IDC_DISPLAY_GROUP,195,4,258,348
+    PUSHBUTTON      "Display",IDC_DISPLAYPOS,202,17,244,185,NOT WS_VISIBLE | WS_DISABLED
+    GROUPBOX        "Acquisition Control",IDC_CONTROL_GROUP2,4,128,187,77
+    EDITTEXT        IDC_SERIALCOMLOG_EDIT,202,207,244,138,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "TODO: <Company name>"
+            VALUE "FileDescription", "TODO: <File description>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "PvCamHeadSerialComLogSample.exe"
+            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+            VALUE "OriginalFilename", "PvCamHeadSerialComLogSample.exe"
+            VALUE "ProductName", "TODO: <Product name>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_PVCAMHEADSERIALCOMLOGSAMPLE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 454
+        VERTGUIDE, 202
+        VERTGUIDE, 446
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 352
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About PvCamHeadSerialComLogSample..."
+END
+
+#endif    // English (Canada) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENC)
+LANGUAGE 9, 4
+#pragma code_page(1252)
+#include "res\PvCamHeadSerialComLogSample.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

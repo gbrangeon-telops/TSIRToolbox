@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AboutBox.cpp" />
+    <ClCompile Include="ActionCommandDlg.cpp" />
+    <ClCompile Include="BitmapButton.cpp" />
+    <ClCompile Include="BufferOptions.cpp" />
+    <ClCompile Include="BufferOptionsDlg.cpp" />
+    <ClCompile Include="ChangeSourceTask.cpp" />
+    <ClCompile Include="ConnectTask.cpp" />
+    <ClCompile Include="Device.cpp" />
+    <ClCompile Include="DeviceGEV.cpp" />
+    <ClCompile Include="DeviceU3V.cpp" />
+    <ClCompile Include="DisconnectTask.cpp" />
+    <ClCompile Include="DisplayThread.cpp" />
+    <ClCompile Include="eBUSPlayerApp.cpp" />
+    <ClCompile Include="eBUSPlayerDlg.cpp" />
+    <ClCompile Include="eBUSPlayerDlgHandlers.cpp" />
+    <ClCompile Include="eBUSPlayerDlgMenu.cpp" />
+    <ClCompile Include="eBUSPlayerDlgMenuFile.cpp" />
+    <ClCompile Include="eBUSPlayerDlgMenuTools.cpp" />
+    <ClCompile Include="ErrorsDlg.cpp" />
+    <ClCompile Include="EventMonitorDlg.cpp" />
+    <ClCompile Include="FileTransferDlg.cpp" />
+    <ClCompile Include="FilteringDlg.cpp" />
+    <ClCompile Include="HistogramCtrl.cpp" />
+    <ClCompile Include="ImageFiltering.cpp" />
+    <ClCompile Include="ImageSaveDlg.cpp" />
+    <ClCompile Include="ImageSaving.cpp" />
+    <ClCompile Include="LoadTask.cpp" />
+    <ClCompile Include="LogBuffer.cpp" />
+    <ClCompile Include="Mutex.cpp" />
+    <ClCompile Include="ParameterInfo.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ProgressDlg.cpp" />
+    <ClCompile Include="RegisterInterfaceDlg.cpp" />
+    <ClCompile Include="SaveTask.cpp" />
+    <ClCompile Include="Setup.cpp" />
+    <ClCompile Include="SetupDlg.cpp" />
+    <ClCompile Include="SplashDlg.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Stream.cpp" />
+    <ClCompile Include="StreamGEV.cpp" />
+    <ClCompile Include="StreamU3V.cpp" />
+    <ClCompile Include="Task.cpp" />
+    <ClCompile Include="WarningDlg.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AboutBox.h" />
+    <ClInclude Include="ActionCommandDlg.h" />
+    <ClInclude Include="BitmapButton.h" />
+    <ClInclude Include="BufferOptions.h" />
+    <ClInclude Include="BufferOptionsDlg.h" />
+    <ClInclude Include="ChangeSourceTask.h" />
+    <ClInclude Include="ConnectTask.h" />
+    <ClInclude Include="Device.h" />
+    <ClInclude Include="DeviceGEV.h" />
+    <ClInclude Include="DeviceU3V.h" />
+    <ClInclude Include="DisconnectTask.h" />
+    <ClInclude Include="DisplayThread.h" />
+    <ClInclude Include="eBUSPlayerApp.h" />
+    <ClInclude Include="eBUSPlayerDlg.h" />
+    <ClInclude Include="eBUSPlayerShared.h" />
+    <ClInclude Include="ErrorsDlg.h" />
+    <ClInclude Include="EventMonitorDlg.h" />
+    <ClInclude Include="FileTransferDlg.h" />
+    <ClInclude Include="FilteringDlg.h" />
+    <ClInclude Include="ImageFiltering.h" />
+    <ClInclude Include="ImageSaveDlg.h" />
+    <ClInclude Include="ImageSaving.h" />
+    <ClInclude Include="IMessageSink.h" />
+    <ClInclude Include="IPersistent.h" />
+    <ClInclude Include="IPlayerController.h" />
+    <ClInclude Include="IProgress.h" />
+    <ClInclude Include="ITask.h" />
+    <ClInclude Include="LoadTask.h" />
+    <ClInclude Include="LogBuffer.h" />
+    <ClInclude Include="Mp4WriterWin32.h" />
+    <ClInclude Include="Mutex.h" />
+    <ClInclude Include="ParameterInfo.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="ProgressDlg.h" />
+    <ClInclude Include="PvMessageBox.h" />
+    <ClInclude Include="RegisterInterfaceDlg.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="SaveTask.h" />
+    <ClInclude Include="SerialBridgeManagerWnd.h" />
+    <ClInclude Include="Setup.h" />
+    <ClInclude Include="SetupDlg.h" />
+    <ClInclude Include="SplashDlg.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Stream.h" />
+    <ClInclude Include="StreamGEV.h" />
+    <ClInclude Include="StreamU3V.h" />
+    <ClInclude Include="Task.h" />
+    <ClInclude Include="WarningDlg.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="eBUSPlayer.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\eBUSPlayer.rc2" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B424A680-CA5C-401E-AB06-80E6449B423B}</ProjectGuid>
+    <RootNamespace>eBUSPlayer</RootNamespace>
+    <Keyword>AtlProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Sample$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Sample$(Configuration)\</IntDir>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Sample$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Sample$(Configuration)\</IntDir>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IgnoreImportLibrary>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <GenerateStublessProxies>true</GenerateStublessProxies>
+      <TypeLibraryName>$(IntDir)eBUSPlayer.tlb</TypeLibraryName>
+      <HeaderFileName>eBUSPlayer.h</HeaderFileName>
+      <DllDataFileName>
+      </DllDataFileName>
+      <InterfaceIdentifierFileName>eBUSPlayer_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>eBUSPlayer_p.c</ProxyFileName>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;$(PUREGEV_ROOT)\Includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;WINVER=0x0502;PV_NO_GEV1X_PIXEL_TYPES;PV_NO_DEPRECATED_PIXEL_TYPES;PV_DEBUG;SERIALBRIDGE;SERIALBRIDGE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);$(PUREGEV_ROOT)\Includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>comsuppwd.lib;uxtheme.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(PUREGEV_ROOT)\Libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <DelayLoadDLLs>Mfplat.dll;MfReadwrite.dll</DelayLoadDLLs>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <GenerateStublessProxies>true</GenerateStublessProxies>
+      <TypeLibraryName>$(IntDir)eBUSPlayer.tlb</TypeLibraryName>
+      <HeaderFileName>eBUSPlayer.h</HeaderFileName>
+      <DllDataFileName>
+      </DllDataFileName>
+      <InterfaceIdentifierFileName>eBUSPlayer_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>eBUSPlayer_p.c</ProxyFileName>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <AdditionalIncludeDirectories>.;$(PUREGEV_ROOT)\Includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WINVER=0x0502;PV_NO_GEV1X_PIXEL_TYPES;PV_NO_DEPRECATED_PIXEL_TYPES;SERIALBRIDGE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);$(PUREGEV_ROOT)\Includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>comsuppwd.lib;uxtheme.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(PUREGEV_ROOT)\Libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+      <DelayLoadDLLs>Mfplat.dll;MfReadwrite.dll</DelayLoadDLLs>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

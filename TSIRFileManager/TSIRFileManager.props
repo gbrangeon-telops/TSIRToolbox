@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <GEVLibrary>eBUS_5_1_5_4563</GEVLibrary>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetName>tsirfmtb</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="GEVLibrary">
+      <Value>$(GEVLibrary)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

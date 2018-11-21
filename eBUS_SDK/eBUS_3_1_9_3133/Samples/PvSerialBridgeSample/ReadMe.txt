@@ -1,0 +1,77 @@
+Copyright (c) 2011, Pleora Technologies Inc., All rights reserved.
+
+**Last Modified 2011/04/13**
+
+==========================
+Using PvSerialBridgeSample
+==========================
+
+1. Introduction
+
+This sample shows how to use the PvSerialBridge class control a serial device
+(usually a camera) connected to a GigE Vision IP Engine from either a
+camera configuration application or a CLProtocol GenICam interface.
+
+After connecting to the device, the sample prompts you to select one 
+of the three supported serial device interfacing scenario:
+
+A. Serial COM port link: through a NULL modem connection, allows a configuration
+   application expecting to interact with the serial device through a serial COM port
+   on the host to interact with the serial device attached to one of the serial
+   ports of the GigE Vision IP Engine.
+   
+B. Camera Link DLL: with the eBUS SDK Camera Link DLL (clserpte.dll) allows
+   a configuration application expecting to interact the the serial device through
+   the standardized Camera Link DLL interface to interact with the serial device
+   attached to one of the serial ports of the GigE Vision IP Engine.
+   
+C. GenICam CLProtocol: using a CLProtocol DLL, allows interfacing a serial device
+   attached to the serial port of a GigE Vision IP Engine through a GenICam interface.
+   The eBUS SDK Camera Link DLL (clserpte.dll) is used to interface the GenICam node map
+   to the serial bridge.
+
+
+2. Pre-requisites
+
+This samples assumes that:
+
+* You have a GigE Vision IP Engine with a serial device (usually a camera) attached to it.
+
+* For scenario A, serial COM port link: you have a NULL modem between 2 ports, either
+  virtual (software) or with real ports and a NULL modem cable. You also have an application
+  from the camera vendor to control the camera through a serial COM port.
+  
+* For scenario B, Camera Link DLL: you have the eBUS SDK Camera Link DLL (clserpte.dll)
+  available properly configured in the Windows Registry:
+	The CLSERIALPATH registry string under HKEY_LOCAL_MACHINE\SOFTWARE\CameraLink
+    is not defined or not pointing the the clserpte.dll eBUS SDK Camera Link DLL path
+  You also have an application from the camera vendor to control the camera using
+  a Camera Link DLL.
+  
+* For scenario C, CLProtocol: you have the eBUS Camera Link DLL properly configured as described
+  above. You also have a CLProtocol from the camera vendor on your system and its path
+  is present in the GENICAM_CLPROTOCOL environment variable.
+
+
+3. Description
+
+3.1 PvGenSerialBridgeSample.cpp
+
+Contains the main entry point to the sample. Displays a device finder allowing the user
+to select a device. Then connects the device and prompts the user which serial bridge
+scenario should be demonstrated.
+
+3.2 SeriaCOMPortBridge.cpp
+
+Shows how to setup a serial bridge through a NULL modem.
+
+3.3 CameraLinkDLLBridge.cpp
+
+Shows how to setup a serial bridge through the eBUS SDK Camera Link DLL, clserpte.dll.
+
+3.4 CLProtocol.cpp
+
+Shows how to use the Camera Link DLL serial bridge to build a GenICam CLProtocol
+node map to control a camera with a GenICam interface.
+
+
