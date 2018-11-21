@@ -145,11 +145,11 @@ void DisplayBuiltInTestsResults(uint32_t builtInTestsResultsRegValue, uint32_t b
 		"TestPointInitialization",
 		"NetworkHostsSynchronization",
 		"DebugTerminalInitialization",
-		"",
-
+		"GPIOControllerInitialization",
+		
 		// DeviceBuiltInTestsResults8
-		"",
-		"",
+		"I2CInterfaceInitialization",
+		"MemoryConfigurationCheck",
 		"",
 		"",
 		"",
