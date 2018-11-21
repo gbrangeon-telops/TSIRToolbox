@@ -22,7 +22,9 @@ void DisplayIntegerValue(PvGenParameterArray *deviceParams, PvString regName);
 void DisplayBooleanValue(PvGenParameterArray *deviceParams, PvString regName);
 void DisplayEnumValue(PvGenParameterArray *deviceParams, PvString regName);
 void DisplayIpAddressValue(PvGenParameterArray *deviceParams, PvString regName);
+void DisplayStorageInfo(PvGenParameterArray *deviceParams);
 bool DisplayError(PvGenParameterArray *deviceParams);
+
 
 int main(int argc, char *argv[])
 {
@@ -233,6 +235,11 @@ int main(int argc, char *argv[])
 //		while (DisplayError(deviceParams));
 //	}
 
+	// Storaqge
+	printf("Storage:\n");
+	DisplayStorageInfo(deviceParams);
+
+
 #if (VERSION_MAJOR == 3)
 	device.Disconnect();
 #elif (VERSION_MAJOR == 4)|| (VERSION_MAJOR == 5)
@@ -377,6 +384,18 @@ void DisplayIpAddressValue(PvGenParameterArray *deviceParams, PvString regName)
 	printf("%s: %d.%d.%d.%d\n", regDisplayName.GetAscii(),
 		regValueBytes[3], regValueBytes[2], regValueBytes[1], regValueBytes[0]);
 }
+
+
+void DisplayStorageInfo(PvGenParameterArray *deviceParams)
+{
+	PvGenInteger *p_node = deviceParams->GetInteger("MemoryBufferTotalSpace");
+	if (p_node == NULL) return;
+	
+	int64_t regValue;
+	p_node->GetValue(regValue);
+	printf("Available memory: %d GB\n", regValue >> 30);
+}
+
 
 bool DisplayError(PvGenParameterArray *deviceParams)
 {
