@@ -23,6 +23,7 @@ void DisplayBooleanValue(PvGenParameterArray *deviceParams, PvString regName);
 void DisplayEnumValue(PvGenParameterArray *deviceParams, PvString regName);
 void DisplayIpAddressValue(PvGenParameterArray *deviceParams, PvString regName);
 void DisplayStorageInfo(PvGenParameterArray *deviceParams);
+void DisplayCLinkInfo(PvGenParameterArray *deviceParams);
 bool DisplayError(PvGenParameterArray *deviceParams);
 
 
@@ -238,7 +239,11 @@ int main(int argc, char *argv[])
 	// Storaqge
 	printf("Storage:\n");
 	DisplayStorageInfo(deviceParams);
+	putchar('\n');
 
+	// Camera Link
+	printf("Camerage Link:\n");
+	DisplayCLinkInfo(deviceParams);
 
 #if (VERSION_MAJOR == 3)
 	device.Disconnect();
@@ -403,6 +408,22 @@ void DisplayStorageInfo(PvGenParameterArray *deviceParams)
 	printf("Available memory: %d GB\n", regValue >> 30);
 }
 
+
+void DisplayCLinkInfo(PvGenParameterArray *deviceParams)
+{
+	double val;
+	PvGenFloat * p_node;
+	PvString regDisplayName;
+	PvString unit;
+
+	DisplayEnumValue(deviceParams, "ClConfiguration");
+	
+	deviceParams->GetFloatValue("DeviceClockFrequency", val);
+	p_node = deviceParams->GetFloat("DeviceClockFrequency");
+	p_node->GetUnit(unit);
+	p_node->GetDisplayName(regDisplayName);
+	printf("%s: %0.1f %s\n", regDisplayName.GetAscii(), val, unit.GetAscii());
+}
 
 bool DisplayError(PvGenParameterArray *deviceParams)
 {
