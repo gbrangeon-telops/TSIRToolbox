@@ -18,7 +18,7 @@ typedef enum {
 
 
 void DisplaySelectorValues(PvGenParameterArray *deviceParams, PvString selectorName);
-void DisplayIntegerValue(PvGenParameterArray *deviceParams, PvString regName);
+void DisplayIntegerValue(PvGenParameterArray *deviceParams, PvString regName, const char *unit = nullptr);
 void DisplayBooleanValue(PvGenParameterArray *deviceParams, PvString regName);
 void DisplayEnumValue(PvGenParameterArray *deviceParams, PvString regName);
 void DisplayIpAddressValue(PvGenParameterArray *deviceParams, PvString regName);
@@ -127,9 +127,9 @@ int main(int argc, char *argv[])
 	printf("\n");
 
 	// Running time
-	DisplayIntegerValue(deviceParams, "DeviceRunningTime");
+	DisplayIntegerValue(deviceParams, "DeviceRunningTime", "s");
 	DisplayIntegerValue(deviceParams, "DevicePowerOnCycles");
-	DisplayIntegerValue(deviceParams, "DeviceCoolerRunningTime");
+	DisplayIntegerValue(deviceParams, "DeviceCoolerRunningTime", "s");
 	DisplayIntegerValue(deviceParams, "DeviceCoolerPowerOnCycles");
 
 	printf("\n");
@@ -294,8 +294,12 @@ void DisplaySelectorValues(PvGenParameterArray *deviceParams, PvString selectorN
 			if (selectedParamType == PvGenTypeFloat)
 			{
 				double selectedParamValue;
+				PvGenFloat *genFloat;
+				PvString unit;
 				deviceParams->GetFloatValue(selectedParams.GetItem(j)->GetName(), selectedParamValue);
-				printf("%0.2f\n", selectedParamValue);
+				genFloat = deviceParams->GetFloat(selectedParams.GetItem(j)->GetName());
+				genFloat->GetUnit(unit);
+				printf("%0.2f %s\n", selectedParamValue, unit.GetAscii());
 			}
 			else if (selectedParamType == PvGenTypeInteger)
 			{
@@ -320,7 +324,7 @@ void DisplaySelectorValues(PvGenParameterArray *deviceParams, PvString selectorN
 	}
 }
 
-void DisplayIntegerValue(PvGenParameterArray *deviceParams, PvString regName)
+void DisplayIntegerValue(PvGenParameterArray *deviceParams, PvString regName, const char *unit)
 {
 	PvGenInteger *p_node = deviceParams->GetInteger(regName);
 	if (p_node == NULL) return;
@@ -331,7 +335,10 @@ void DisplayIntegerValue(PvGenParameterArray *deviceParams, PvString regName)
 	int64_t regValue;
 	p_node->GetValue(regValue);
 
-	printf("%s: %d\n", regDisplayName.GetAscii(), (uint32_t) regValue);
+	if (unit)
+		printf("%s: %d %s\n", regDisplayName.GetAscii(), (uint32_t) regValue, unit);
+	else
+		printf("%s: %d\n", regDisplayName.GetAscii(), (uint32_t)regValue);
 }
 
 void DisplayBooleanValue(PvGenParameterArray *deviceParams, PvString regName)
