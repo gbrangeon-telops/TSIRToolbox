@@ -242,7 +242,7 @@ int main(int argc, char *argv[])
 	putchar('\n');
 
 	// Camera Link
-	printf("Camerage Link:\n");
+	printf("Camera Link:\n");
 	DisplayCLinkInfo(deviceParams);
 
 #if (VERSION_MAJOR == 3)
