@@ -417,7 +417,20 @@ void DisplayCLinkInfo(PvGenParameterArray *deviceParams)
 	PvString unit;
 
 	DisplayEnumValue(deviceParams, "ClConfiguration");
-	
+	PvGenEnum *p_conf = deviceParams->GetEnum("ClConfiguration");
+	int64_t ClConfValue;
+	p_conf->GetValue(ClConfValue);
+
+	/* Set clock selector */
+	PvGenEnum *p_selector = deviceParams->GetEnum("DeviceClockSelector");
+	if (p_selector == NULL) return;
+	p_selector->SetValue(ClConfValue);
+	const PvGenEnumEntry *entry;
+	p_selector->GetEntryByIndex(ClConfValue, &entry);
+	PvString entryDisplayName;
+	entry->GetDisplayName(entryDisplayName);
+	printf("Device Clock Selector: %s\n", entryDisplayName.GetAscii());
+
 	deviceParams->GetFloatValue("DeviceClockFrequency", val);
 	p_node = deviceParams->GetFloat("DeviceClockFrequency");
 	p_node->GetUnit(unit);
