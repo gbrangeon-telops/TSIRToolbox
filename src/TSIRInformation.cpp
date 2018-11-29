@@ -418,6 +418,7 @@ void DisplayCLinkInfo(PvGenParameterArray *deviceParams)
 
 	DisplayEnumValue(deviceParams, "ClConfiguration");
 	PvGenEnum *p_conf = deviceParams->GetEnum("ClConfiguration");
+	if (p_conf == NULL) return;
 	int64_t ClConfValue;
 	p_conf->GetValue(ClConfValue);
 
