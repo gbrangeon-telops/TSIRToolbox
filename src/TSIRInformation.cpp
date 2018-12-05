@@ -417,17 +417,13 @@ void DisplayCLinkInfo(PvGenParameterArray *deviceParams)
 	PvString unit;
 
 	DisplayEnumValue(deviceParams, "ClConfiguration");
-	PvGenEnum *p_conf = deviceParams->GetEnum("ClConfiguration");
-	if (p_conf == NULL) return;
-	int64_t ClConfValue;
-	p_conf->GetValue(ClConfValue);
 
 	/* Set clock selector */
 	PvGenEnum *p_selector = deviceParams->GetEnum("DeviceClockSelector");
 	if (p_selector == NULL) return;
-	p_selector->SetValue(ClConfValue);
+	p_selector->SetValue(2);  // Camera Link
 	const PvGenEnumEntry *entry;
-	p_selector->GetEntryByIndex(ClConfValue, &entry);
+	p_selector->GetEntryByIndex(2, &entry);
 	PvString entryDisplayName;
 	entry->GetDisplayName(entryDisplayName);
 	printf("Device Clock Selector: %s\n", entryDisplayName.GetAscii());
