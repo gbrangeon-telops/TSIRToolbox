@@ -16,7 +16,7 @@ typedef enum {
 	verBuild
 } version_t;
 
-
+/* Prototypes */
 void DisplaySelectorValues(PvGenParameterArray *deviceParams, PvString selectorName);
 void DisplayIntegerValue(PvGenParameterArray *deviceParams, PvString regName, const char *unit = nullptr);
 void DisplayBooleanValue(PvGenParameterArray *deviceParams, PvString regName);
@@ -26,6 +26,9 @@ void DisplayStorageInfo(PvGenParameterArray *deviceParams);
 void DisplayCLinkInfo(PvGenParameterArray *deviceParams);
 bool DisplayError(PvGenParameterArray *deviceParams);
 
+/* Globals */
+int64_t deviceFirmwareVersion[4];
+bool externalMemoryBufferIsImplemented;
 
 int main(int argc, char *argv[])
 {
@@ -72,7 +75,6 @@ int main(int argc, char *argv[])
 #endif
 
 	// Determine if there is a storage board
-	bool externalMemoryBufferIsImplemented;
 	deviceParams->GetBooleanValue("ExternalMemoryBufferIsImplemented", externalMemoryBufferIsImplemented);
 
 	printf("\n");
@@ -85,7 +87,6 @@ int main(int argc, char *argv[])
 	printf("\n");
 
 	// Firmware version
-	int64_t deviceFirmwareVersion[4];
 	deviceParams->GetIntegerValue("DeviceFirmwareMajorVersion", deviceFirmwareVersion[verMajor]);
 	deviceParams->GetIntegerValue("DeviceFirmwareMinorVersion", deviceFirmwareVersion[verMinor]);
 	deviceParams->GetIntegerValue("DeviceFirmwareSubMinorVersion", deviceFirmwareVersion[verSubMinor]);
@@ -400,12 +401,20 @@ void DisplayIpAddressValue(PvGenParameterArray *deviceParams, PvString regName)
 
 void DisplayStorageInfo(PvGenParameterArray *deviceParams)
 {
-	PvGenInteger *p_node = deviceParams->GetInteger("MemoryBufferTotalSpace");
-	if (p_node == NULL) return;
-	
-	int64_t regValue;
-	p_node->GetValue(regValue);
-	printf("Available memory: %d GB\n", regValue >> 30);
+	printf("External storage board present: %s\n", externalMemoryBufferIsImplemented ? "yes" : "no");
+
+	if (deviceFirmwareVersion[verMajor] == 0 || deviceFirmwareVersion[verMajor] > 2 ||
+		(deviceFirmwareVersion[verMajor]) == 2 && deviceFirmwareVersion[verMinor] >= 6)
+	{
+		PvGenInteger *p_node = deviceParams->GetInteger("MemoryBufferTotalSpace");
+		if (p_node == NULL) return;
+
+		int64_t regValue;
+		p_node->GetValue(regValue);
+		printf("Available memory: %d GB\n", regValue >> 30);
+	}
+	else 
+		printf("Available memory: %d GB\n", externalMemoryBufferIsImplemented ? 16 : 0);
 }
 
 
