@@ -411,10 +411,13 @@ void DisplayStorageInfo(PvGenParameterArray *deviceParams)
 
 		int64_t regValue;
 		p_node->GetValue(regValue);
-		printf("Available memory: %d GB\n", regValue >> 30);
+		if ((regValue >> 20) >= 1024)
+			printf("Available memory: %d GB\n", regValue >> 30);
+		else
+			printf("Available memory: %d MB\n", regValue >> 20);
 	}
 	else 
-		printf("Available memory: %d GB\n", externalMemoryBufferIsImplemented ? 16 : 0);
+		printf("Available memory: %d GB\n", externalMemoryBufferIsImplemented ? 16 : 1);
 }
 
 
