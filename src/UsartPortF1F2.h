@@ -33,6 +33,9 @@ public:
 	IRC_Status_t FileCloseRequest(const uint32_t index);
 	IRC_Status_t FileDeleteRequest(const uint32_t index);
 	IRC_Status_t FileFormatRequest();
+	IRC_Status_t FileUsedSpaceRequest(uint64_t *p_fileUsedSpace);
+	IRC_Status_t FileFreeSpaceRequest(uint64_t *p_fileFreeSpace);
+	IRC_Status_t FileTotalSpaceRequest(uint64_t *p_fileTotalSpace);
    IRC_Status_t PromEraseRequest(const uint8_t device, const uint32_t dataOffset, const uint32_t dataLength);
    IRC_Status_t PromReadRequest(const uint8_t device, const uint32_t dataOffset, const uint16_t dataLength, uint8_t *p_data);
    IRC_Status_t PromWriteRequest(const uint8_t device, const uint32_t dataOffset, const uint16_t dataLength, uint8_t *p_data);

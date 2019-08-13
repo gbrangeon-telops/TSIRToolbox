@@ -323,12 +323,26 @@ IRC_Status_t F1F2_PayloadParser(uint8_t *p_payload, uint16_t pdc, F1F2Command_t 
 
       case F1F2_CMD_PING:
       case F1F2_CMD_FILE_FORMAT:
+	  case F1F2_CMD_FILE_USED_SPACE_REQ:
+	  case F1F2_CMD_FILE_FREE_SPACE_REQ:
+	  case F1F2_CMD_FILE_TOTAL_SPACE_REQ:
          if (pdc != 0)
          {
             F1F2_ERR("Invalid Payload Data Count (cmd = %d).", f1f2Cmd->cmd);
             return IRC_FAILURE;
          }
          break;
+
+	  case F1F2_CMD_FILE_USED_SPACE_RSP:
+	  case F1F2_CMD_FILE_FREE_SPACE_RSP:
+	  case F1F2_CMD_FILE_TOTAL_SPACE_RSP:
+		  if (pdc != F1F2_FILE_SPACE_SIZE)
+		  {
+			  F1F2_ERR("Invalid Payload Data Count (cmd = %d).", f1f2Cmd->cmd);
+			  return IRC_FAILURE;
+		  }
+		  memcpy(&f1f2Cmd->payload.fileSpace.space, &p_payload[F1F2_PD_OFFSET_FILE_SPACE], F1F2_FILE_SPACE_SIZE);
+		  break;
 
       case F1F2_CMD_NETWORK:
          if (pdc < F1F2_MIN_NET_PAYLOADDATACOUNT)
@@ -695,7 +709,19 @@ uint32_t F1F2_CommandBuilder(F1F2Command_t *f1f2Cmd, uint8_t *buffer, uint16_t b
 
       case F1F2_CMD_PING:
       case F1F2_CMD_FILE_FORMAT:
+	  case F1F2_CMD_FILE_USED_SPACE_REQ:
+	  case F1F2_CMD_FILE_FREE_SPACE_REQ:
+	  case F1F2_CMD_FILE_TOTAL_SPACE_REQ:
          break;
+
+	  case F1F2_CMD_FILE_USED_SPACE_RSP:
+	  case F1F2_CMD_FILE_FREE_SPACE_RSP:
+	  case F1F2_CMD_FILE_TOTAL_SPACE_RSP:
+		  payloadData[dataCount].p_data = &f1f2Cmd->payload.fileSpace.space;
+		  payloadData[dataCount].dataLength = F1F2_FILE_SPACE_SIZE;
+		  payloadData[dataCount].padLength = 0;
+		  dataCount++;
+		  break;
 
       default:
          F1F2_ERR("Unknown command  (cmd = %d).", f1f2Cmd->cmd);

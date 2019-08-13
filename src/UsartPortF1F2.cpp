@@ -425,6 +425,93 @@ IRC_Status_t UsartPortF1F2::FileFormatRequest()
 	return IRC_SUCCESS;
 }
 
+IRC_Status_t UsartPortF1F2::FileUsedSpaceRequest(uint64_t *p_fileUsedSpace)
+{
+	F1F2Command_t request;
+	F1F2Command_t response;
+	IRC_Status_t status;
+
+	UPF1F2_INF("Reading filesystem used space...");
+
+	if (!UsartPort::IsOpened())
+	{
+		UPF1F2_ERR("USART port is not opened.");
+		return IRC_FAILURE;
+	}
+
+	F1F2_CommandClear(&request);
+	request.cmd = F1F2_CMD_FILE_USED_SPACE_REQ;
+
+	status = SendRecvF1F2(&request, &response);
+	if ((status != IRC_SUCCESS) || (response.cmd != F1F2_CMD_FILE_USED_SPACE_RSP))
+	{
+		UPF1F2_ERR("Filesystem used space request failed.");
+		return IRC_FAILURE;
+	}
+
+	*p_fileUsedSpace = response.payload.fileSpace.space;
+
+	return IRC_SUCCESS;
+}
+
+IRC_Status_t UsartPortF1F2::FileFreeSpaceRequest(uint64_t *p_fileFreeSpace)
+{
+	F1F2Command_t request;
+	F1F2Command_t response;
+	IRC_Status_t status;
+
+	UPF1F2_INF("Reading filesystem free space...");
+
+	if (!UsartPort::IsOpened())
+	{
+		UPF1F2_ERR("USART port is not opened.");
+		return IRC_FAILURE;
+	}
+
+	F1F2_CommandClear(&request);
+	request.cmd = F1F2_CMD_FILE_FREE_SPACE_REQ;
+
+	status = SendRecvF1F2(&request, &response);
+	if ((status != IRC_SUCCESS) || (response.cmd != F1F2_CMD_FILE_FREE_SPACE_RSP))
+	{
+		UPF1F2_ERR("Filesystem free space request failed.");
+		return IRC_FAILURE;
+	}
+
+	*p_fileFreeSpace = response.payload.fileSpace.space;
+
+	return IRC_SUCCESS;
+}
+
+IRC_Status_t UsartPortF1F2::FileTotalSpaceRequest(uint64_t *p_fileTotalSpace)
+{
+	F1F2Command_t request;
+	F1F2Command_t response;
+	IRC_Status_t status;
+
+	UPF1F2_INF("Reading filesystem total space...");
+
+	if (!UsartPort::IsOpened())
+	{
+		UPF1F2_ERR("USART port is not opened.");
+		return IRC_FAILURE;
+	}
+
+	F1F2_CommandClear(&request);
+	request.cmd = F1F2_CMD_FILE_TOTAL_SPACE_REQ;
+
+	status = SendRecvF1F2(&request, &response);
+	if ((status != IRC_SUCCESS) || (response.cmd != F1F2_CMD_FILE_TOTAL_SPACE_RSP))
+	{
+		UPF1F2_ERR("Filesystem total space request failed.");
+		return IRC_FAILURE;
+	}
+
+	*p_fileTotalSpace = response.payload.fileSpace.space;
+
+	return IRC_SUCCESS;
+}
+
 IRC_Status_t UsartPortF1F2::PromEraseRequest(const uint8_t device, const uint32_t dataOffset, const uint32_t dataLength)
 {
    F1F2Command_t request;

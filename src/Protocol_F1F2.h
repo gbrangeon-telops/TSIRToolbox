@@ -63,6 +63,13 @@
 #define F1F2_CMD_PROM_CHECK_REQ     0x44     /**< F1F2 PROM Check Request command code */
 #define F1F2_CMD_PROM_CHECK_RSP     0x45     /**< F1F2 PROM Check Response command code */
 #define F1F2_CMD_PING               0x50     /**< F1F2 Ping command code */
+#define F1F2_CMD_FILE_USED_SPACE_REQ 0x70    /**< F1F2 File Used Space Request command code */
+#define F1F2_CMD_FILE_USED_SPACE_RSP 0x71    /**< F1F2 File Used Space Response command code */
+#define F1F2_CMD_FILE_FREE_SPACE_REQ 0x72    /**< F1F2 File Free Space Request command code */
+#define F1F2_CMD_FILE_FREE_SPACE_RSP 0x73    /**< F1F2 File Free Space Response command code */
+#define F1F2_CMD_FILE_TOTAL_SPACE_REQ 0x74   /**< F1F2 File Total Space Request command code */
+#define F1F2_CMD_FILE_TOTAL_SPACE_RSP 0x75   /**< F1F2 File Total Space Response command code */
+
 #define F1F2_CMD_NETWORK            0x80     /**< F1F2 Network command code */
 #define F1F2_CMD_ERROR              0xFF     /**< F1F2 command value returned on parsing error */
 
@@ -85,6 +92,7 @@
 #define F1F2_FILE_INFO_SIZE         (F1F2_FILE_INDEX_SIZE + F1F2_FILE_NAME_SIZE + F1F2_FILE_SIZE_SIZE + F1F2_FILE_ATTR_SIZE + F1F2_FILE_ID_SIZE + F1F2_FILE_TYPE_SIZE)  /**< F1F2 file info field size in bytes */
 #define F1F2_FILE_OFFSET_SIZE       4        /**< F1F2 file data offset field size in bytes */
 #define F1F2_FILE_LENGTH_SIZE       2        /**< F1F2 file data length field size in bytes */
+#define F1F2_FILE_SPACE_SIZE        8        /**< F1F2 file space field size in bytes */
 #define F1F2_PROM_DEVICE_SIZE       1        /**< F1F2 PROM device number field size in bytes */
 #define F1F2_PROM_OFFSET_SIZE       4        /**< F1F2 PROM data offset field size in bytes */
 #define F1F2_PROM_LENGTH_SIZE       4        /**< F1F2 PROM data length field size in bytes */
@@ -131,6 +139,9 @@
 #define F1F2_PD_OFFSET_PROM_DATA       (F1F2_PD_OFFSET_PROM_RW_LENGTH + F1F2_PROM_RW_LENGTH_SIZE) /**< F1F2 Payload Data PROM Data offset */
 #define F1F2_PD_OFFSET_PROM_LENGTH     (F1F2_PD_OFFSET_PROM_OFFSET + F1F2_PROM_OFFSET_SIZE)     /**< F1F2 Payload Data PROM Data Check Length offset */
 #define F1F2_PD_OFFSET_PROM_CRC16      (F1F2_PD_OFFSET_PROM_LENGTH + F1F2_PROM_LENGTH_SIZE)     /**< F1F2 Payload Data PROM CRC-16 offset */
+// Flash filesystem payload data bytes offset
+#define F1F2_PD_OFFSET_FILE_SPACE      0                                                        /**< F1F2 Payload Data File Space offset */
+
 
 // F1F2 size limits definition
 #define F1F2_MAX_PAYLOADDATACOUNT   65535                                                       /**< Maximum F1F2 payload data count */
@@ -231,6 +242,10 @@ struct F1F2CommandStruct {
          uint32_t dataLength; /**< PROM data length in bytes */
          uint16_t crc16;      /**< PROM CRC-16 */
       } promCheck;            /**< F1F2 payload data for PROM_CHECK_REQ and PROM_CHECK_RSP command code */
+
+      struct {
+         uint64_t space;      /**< Flash filesystem space in bytes */
+      } fileSpace;            /**< F1F2 payload data for FILE_USED_SPACE_RSP, FILE_FREE_SPACE_RSP and FILE_TOTAL_SPACE_RSP command codes */
 
    } payload;                 /**< F1F2 payload data */
 };

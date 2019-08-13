@@ -83,6 +83,16 @@ IRC_Status_t FileManager::FileList()
 	}
 	PRINTF("%d file(s)\n", fileInfoList.size());
 
+	bool spaceInfoAvail = true;
+	uint64_t spaceTotal, spaceUsed, spaceFree;
+	if (m_port.FileUsedSpaceRequest(&spaceUsed) != IRC_SUCCESS) spaceInfoAvail = false;
+	if (m_port.FileFreeSpaceRequest(&spaceFree) != IRC_SUCCESS) spaceInfoAvail = false;
+	if (m_port.FileTotalSpaceRequest(&spaceTotal) != IRC_SUCCESS) spaceInfoAvail = false;
+	if (spaceInfoAvail)
+		PRINTF("Space in bytes: used = %I64u, free = %I64u, total = %I64u\n", spaceUsed, spaceFree, spaceTotal);
+	else
+		PRINTF("Space in bytes: not available\n");
+
 	return IRC_SUCCESS;
 }
 
