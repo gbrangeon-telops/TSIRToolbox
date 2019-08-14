@@ -505,6 +505,11 @@ void FileManager::SetVerbose(bool verbose)
 	m_port.SetVerbose(verbose);
 }
 
+PvGenParameterArray *FileManager::GetGenParams()
+{
+	return m_port.GetGenParams();
+}
+
 void FileManager::PrintReport()
 {
 	PRINTF("Error count: %d\n", m_port.GetErrorCount());

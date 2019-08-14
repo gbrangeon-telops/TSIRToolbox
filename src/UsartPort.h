@@ -38,6 +38,7 @@ public:
 
 	void SetVerbose(bool verbose);
 	bool GetVerbose();
+	PvGenParameterArray *GetGenParams();
 
 private:
 	bool Connect();

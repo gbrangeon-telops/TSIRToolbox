@@ -1,13 +1,14 @@
-#include "BuiltInTestsDef.h"
-#include "TDCStatusDef.h"
-#include "BuildInfo.h"
-#include "TSIRToolbox.h"
 #include <PvVersion.h>
 #include <PvDevice.h>
 #include <PvDeviceFinderWnd.h>
 #include <stdint.h>
 #include <cstdio>
 #include <windows.h>
+#include "BuiltInTestsDef.h"
+#include "TDCStatusDef.h"
+#include "BuildInfo.h"
+#include "TSIRToolbox.h"
+#include "FileManager.h"
 
 typedef enum {
 	verMajor = 0,
@@ -33,46 +34,18 @@ bool externalMemoryBufferIsImplemented;
 int main(int argc, char *argv[])
 {
 	PvResult result;
+	FileManager fm;
 
 	printf("TS-IR Information (TSIR Toolbox v%d.%d.%d.%d%s)\n", TSIR_TOOLBOX_MAJOR_VERSION, TSIR_TOOLBOX_MINOR_VERSION, TSIR_TOOLBOX_SUBMINOR_VERSION, SVN_SOFTWARE_REV, SVN_SOFTWARE_MODIFIED);
-
-	// Select device
-	PvDeviceFinderWnd deviceFinderWnd;
-	result = deviceFinderWnd.ShowModal();
-	if(!result.IsOK())
+		
+	if (fm.Open() != IRC_SUCCESS)
 	{
-		// User canceled
-		return 0;
+		fprintf(stderr, "Unable to open port.\n");
+		return IRC_FAILURE;
 	}
 
-	const PvDeviceInfo *deviceInfo = NULL;
-	deviceInfo = deviceFinderWnd.GetSelected();
-	if (deviceInfo == NULL)
-	{
-		return 1;
-	}
-
-	// Connect to the selected GEV Device
-#if (VERSION_MAJOR == 3)
-	PvDevice device;
-	result = device.Connect(deviceInfo);
-#elif (VERSION_MAJOR == 4)|| (VERSION_MAJOR == 5)
-	PvDevice *device;
-	device = PvDevice::CreateAndConnect(deviceInfo, &result);
-#endif
-
-	if (!result.IsOK())
-	{
-		printf("Unable to connect to device.\n");
-		return 1;
-	}
-
-	PvGenParameterArray *deviceParams;
-#if (VERSION_MAJOR == 3)
-	deviceParams = device.GetGenParameters();
-#elif (VERSION_MAJOR == 4)|| (VERSION_MAJOR == 5)
-	deviceParams = device->GetParameters();
-#endif
+	// Get device parameters
+	PvGenParameterArray *deviceParams = fm.GetGenParams();
 
 	// Determine if there is a storage board
 	deviceParams->GetBooleanValue("ExternalMemoryBufferIsImplemented", externalMemoryBufferIsImplemented);
@@ -226,17 +199,6 @@ int main(int argc, char *argv[])
 	DisplaySelectorValues(deviceParams, "DeviceCurrentSelector");
 	printf("\n");
 
-//	// Device errors
-//	printf("Device Errors:\n");
-//	if (DisplayError(deviceParams) == false)
-//	{
-//		printf("No Error\n");
-//	}
-//	else
-//	{
-//		while (DisplayError(deviceParams));
-//	}
-
 	// Storaqge
 	printf("Storage:\n");
 	DisplayStorageInfo(deviceParams);
@@ -245,13 +207,18 @@ int main(int argc, char *argv[])
 	// Camera Link
 	printf("Camera Link:\n");
 	DisplayCLinkInfo(deviceParams);
+	putchar('\n');
 
-#if (VERSION_MAJOR == 3)
-	device.Disconnect();
-#elif (VERSION_MAJOR == 4)|| (VERSION_MAJOR == 5)
-	PvDevice::Free(device);
-#endif
+	// Print file list and flash filesystem space
+	printf("List of files:\n");
+	if (fm.FileList() != IRC_SUCCESS)
+	{
+		fprintf(stderr, "Failed to list file(s).\n");
+		fm.Close();
+		return IRC_FAILURE;
+	}
 
+	fm.Close();
 	return 0;
 }
 

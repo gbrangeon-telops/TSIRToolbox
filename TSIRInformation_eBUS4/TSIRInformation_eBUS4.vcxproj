@@ -20,14 +20,24 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\BuiltInTestsDef.h" />
+    <ClInclude Include="..\src\CRC.h" />
+    <ClInclude Include="..\src\FileManager.h" />
+    <ClInclude Include="..\src\Protocol_F1F2.h" />
     <ClInclude Include="..\src\TDCStatusDef.h" />
     <ClInclude Include="..\src\TSIRToolbox.h" />
+    <ClInclude Include="..\src\UsartPort.h" />
+    <ClInclude Include="..\src\UsartPortF1F2.h" />
     <ClInclude Include="..\src\Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\BuiltInTestsDef.cpp" />
+    <ClCompile Include="..\src\CRC.cpp" />
+    <ClCompile Include="..\src\FileManager.cpp" />
+    <ClCompile Include="..\src\Protocol_F1F2.cpp" />
     <ClCompile Include="..\src\TDCStatusDef.cpp" />
     <ClCompile Include="..\src\TSIRInformation.cpp" />
+    <ClCompile Include="..\src\UsartPort.cpp" />
+    <ClCompile Include="..\src\UsartPortF1F2.cpp" />
     <ClCompile Include="..\src\Utils.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -337,3 +337,16 @@ bool UsartPort::GetVerbose()
 {
    return m_verbose;
 }
+
+PvGenParameterArray *UsartPort::GetGenParams()
+{
+	PvGenParameterArray *params;
+
+#if (VERSION_MAJOR == 3)
+	params = m_device.GetGenParameters();
+#elif (VERSION_MAJOR == 4)|| (VERSION_MAJOR == 5)
+	params = m_device->GetParameters();
+#endif
+
+	return params;
+}

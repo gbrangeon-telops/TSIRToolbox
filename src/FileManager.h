@@ -33,6 +33,7 @@ public:
 	IRC_Status_t FileFormat();
 
 	void SetVerbose(bool verbose);
+	PvGenParameterArray *GetGenParams();
 
 	void PrintReport();
 
