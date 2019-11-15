@@ -371,7 +371,7 @@ void DisplayStorageInfo(PvGenParameterArray *deviceParams)
 	printf("External storage board present: %s\n", externalMemoryBufferIsImplemented ? "yes" : "no");
 
 	if (deviceFirmwareVersion[verMajor] == 0 || deviceFirmwareVersion[verMajor] > 2 ||
-		(deviceFirmwareVersion[verMajor]) == 2 && deviceFirmwareVersion[verMinor] >= 6)
+		(deviceFirmwareVersion[verMajor] == 2 && deviceFirmwareVersion[verMinor] >= 6))
 	{
 		PvGenInteger *p_node = deviceParams->GetInteger("MemoryBufferTotalSpace");
 		if (p_node == NULL) return;
