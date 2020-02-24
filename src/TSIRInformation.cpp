@@ -373,15 +373,20 @@ void DisplayStorageInfo(PvGenParameterArray *deviceParams)
 	if (deviceFirmwareVersion[verMajor] == 0 || deviceFirmwareVersion[verMajor] > 2 ||
 		(deviceFirmwareVersion[verMajor] == 2 && deviceFirmwareVersion[verMinor] >= 6))
 	{
-		PvGenInteger *p_node = deviceParams->GetInteger("MemoryBufferTotalSpace");
-		if (p_node == NULL) return;
+		PvGenInteger *p_node1 = deviceParams->GetInteger("MemoryBufferTotalSpaceHigh");
+		PvGenInteger *p_node2 = deviceParams->GetInteger("MemoryBufferTotalSpaceLow");
+		if (p_node1 == NULL || p_node2 == NULL) return;
 
-		int64_t regValue;
-		p_node->GetValue(regValue);
-		if ((regValue >> 20) >= 1024)
-			printf("Available memory: %d GB\n", regValue >> 30);
+		int64_t highRegValue, lowRegValue;
+		int64_t totalSpace;
+		p_node1->GetValue(highRegValue);
+		p_node2->GetValue(lowRegValue);
+		totalSpace = (highRegValue << 32) | lowRegValue;
+
+		if ((totalSpace >> 20) >= 1024)
+			printf("Available memory: %d GB\n", totalSpace >> 30);
 		else
-			printf("Available memory: %d MB\n", regValue >> 20);
+			printf("Available memory: %d MB\n", totalSpace >> 20);
 	}
 	else 
 		printf("Available memory: %d GB\n", externalMemoryBufferIsImplemented ? 16 : 1);
