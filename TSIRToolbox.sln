@@ -27,6 +27,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TSIRFirmwareUpdater_eBUS4",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TSIRInformation_eBUS4", "TSIRInformation_eBUS4\TSIRInformation_eBUS4.vcxproj", "{EADD0A90-3916-4AAE-A8F7-D3B526119B47}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NTXDetect", "NTXDetect\NTXDetect.vcxproj", "{EB5D37BF-AF85-41B7-BD4D-90B01EEA021D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -131,6 +133,14 @@ Global
 		{EADD0A90-3916-4AAE-A8F7-D3B526119B47}.Release|Win32.Build.0 = Release|Win32
 		{EADD0A90-3916-4AAE-A8F7-D3B526119B47}.Release|x64.ActiveCfg = Release|x64
 		{EADD0A90-3916-4AAE-A8F7-D3B526119B47}.Release|x64.Build.0 = Release|x64
+		{EB5D37BF-AF85-41B7-BD4D-90B01EEA021D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EB5D37BF-AF85-41B7-BD4D-90B01EEA021D}.Debug|Win32.Build.0 = Debug|Win32
+		{EB5D37BF-AF85-41B7-BD4D-90B01EEA021D}.Debug|x64.ActiveCfg = Debug|x64
+		{EB5D37BF-AF85-41B7-BD4D-90B01EEA021D}.Debug|x64.Build.0 = Debug|x64
+		{EB5D37BF-AF85-41B7-BD4D-90B01EEA021D}.Release|Win32.ActiveCfg = Release|Win32
+		{EB5D37BF-AF85-41B7-BD4D-90B01EEA021D}.Release|Win32.Build.0 = Release|Win32
+		{EB5D37BF-AF85-41B7-BD4D-90B01EEA021D}.Release|x64.ActiveCfg = Release|x64
+		{EB5D37BF-AF85-41B7-BD4D-90B01EEA021D}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

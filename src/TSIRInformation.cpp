@@ -52,6 +52,17 @@ int main(int argc, char *argv[])
 
 	printf("\n");
 
+	// NTX-Mini platform
+	int64_t IPEngineDeviceID;
+	const char *ntxPlatforms[] = { "PT01-PBXMX1-32XG33-v1.24.0", "PT01-PBXMX4-32XG33-v0.5.0" };
+	int ntxPlatformSel;
+	deviceParams->GetIntegerValue("IPEngineDeviceID", IPEngineDeviceID);
+	if (IPEngineDeviceID == 20) ntxPlatformSel = 0;
+	if (IPEngineDeviceID == 34) ntxPlatformSel = 1;
+	printf("NTX-Mini Platform: %s\n", ntxPlatforms[ntxPlatformSel]);
+
+	printf("\n");
+	
 	// Serial number
 	int64_t deviceSerialNumber;
 	deviceParams->GetIntegerValue("DeviceSerialNumber", deviceSerialNumber);
