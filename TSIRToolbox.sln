@@ -9,8 +9,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "T2KFileManager", "T2KFileMa
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TSIRFirmwareUpdater", "TSIRFirmwareUpdater\TSIRFirmwareUpdater.vcxproj", "{0DD5264B-5D05-4721-AD21-9A30E39EB804}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TSIRInformation", "TSIRInformation\TSIRInformation.vcxproj", "{5A8E1FE2-10C7-4CA3-9B21-BEB144E633FA}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "T2KFileManager_eBUS3", "T2KFileManager_eBUS3\T2KFileManager_eBUS3.vcxproj", "{E811BE27-0B43-49D3-A619-37862F8D676F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TSIRFileManager_eBUS3", "TSIRFileManager_eBUS3\TSIRFileManager_eBUS3.vcxproj", "{D5EC5201-C70D-4C06-8BB7-DD06CB2054BB}"
@@ -28,6 +26,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TSIRInformation_eBUS4", "TSIRInformation_eBUS4\TSIRInformation_eBUS4.vcxproj", "{EADD0A90-3916-4AAE-A8F7-D3B526119B47}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NTXDetect", "NTXDetect\NTXDetect.vcxproj", "{EB5D37BF-AF85-41B7-BD4D-90B01EEA021D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TSIRInformation", "TSIRInformation\TSIRInformation.vcxproj", "{5A8E1FE2-10C7-4CA3-9B21-BEB144E633FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,14 +61,6 @@ Global
 		{0DD5264B-5D05-4721-AD21-9A30E39EB804}.Release|Win32.Build.0 = Release|Win32
 		{0DD5264B-5D05-4721-AD21-9A30E39EB804}.Release|x64.ActiveCfg = Release|x64
 		{0DD5264B-5D05-4721-AD21-9A30E39EB804}.Release|x64.Build.0 = Release|x64
-		{5A8E1FE2-10C7-4CA3-9B21-BEB144E633FA}.Debug|Win32.ActiveCfg = Debug|Win32
-		{5A8E1FE2-10C7-4CA3-9B21-BEB144E633FA}.Debug|Win32.Build.0 = Debug|Win32
-		{5A8E1FE2-10C7-4CA3-9B21-BEB144E633FA}.Debug|x64.ActiveCfg = Debug|x64
-		{5A8E1FE2-10C7-4CA3-9B21-BEB144E633FA}.Debug|x64.Build.0 = Debug|x64
-		{5A8E1FE2-10C7-4CA3-9B21-BEB144E633FA}.Release|Win32.ActiveCfg = Release|Win32
-		{5A8E1FE2-10C7-4CA3-9B21-BEB144E633FA}.Release|Win32.Build.0 = Release|Win32
-		{5A8E1FE2-10C7-4CA3-9B21-BEB144E633FA}.Release|x64.ActiveCfg = Release|x64
-		{5A8E1FE2-10C7-4CA3-9B21-BEB144E633FA}.Release|x64.Build.0 = Release|x64
 		{E811BE27-0B43-49D3-A619-37862F8D676F}.Debug|Win32.ActiveCfg = Debug|Win32
 		{E811BE27-0B43-49D3-A619-37862F8D676F}.Debug|Win32.Build.0 = Debug|Win32
 		{E811BE27-0B43-49D3-A619-37862F8D676F}.Debug|x64.ActiveCfg = Debug|x64
@@ -141,6 +133,14 @@ Global
 		{EB5D37BF-AF85-41B7-BD4D-90B01EEA021D}.Release|Win32.Build.0 = Release|Win32
 		{EB5D37BF-AF85-41B7-BD4D-90B01EEA021D}.Release|x64.ActiveCfg = Release|x64
 		{EB5D37BF-AF85-41B7-BD4D-90B01EEA021D}.Release|x64.Build.0 = Release|x64
+		{5A8E1FE2-10C7-4CA3-9B21-BEB144E633FA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5A8E1FE2-10C7-4CA3-9B21-BEB144E633FA}.Debug|Win32.Build.0 = Debug|Win32
+		{5A8E1FE2-10C7-4CA3-9B21-BEB144E633FA}.Debug|x64.ActiveCfg = Debug|x64
+		{5A8E1FE2-10C7-4CA3-9B21-BEB144E633FA}.Debug|x64.Build.0 = Debug|x64
+		{5A8E1FE2-10C7-4CA3-9B21-BEB144E633FA}.Release|Win32.ActiveCfg = Release|Win32
+		{5A8E1FE2-10C7-4CA3-9B21-BEB144E633FA}.Release|Win32.Build.0 = Release|Win32
+		{5A8E1FE2-10C7-4CA3-9B21-BEB144E633FA}.Release|x64.ActiveCfg = Release|x64
+		{5A8E1FE2-10C7-4CA3-9B21-BEB144E633FA}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,7 @@
     <GEVLibrary>eBUS_5_1_5_4563</GEVLibrary>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetName>ntxdetect</TargetName>
+    <TargetName>tsirinfo</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup />
   <ItemGroup>
