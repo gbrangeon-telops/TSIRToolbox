@@ -2,6 +2,7 @@
 #include <PvDevice.h>
 #include <PvDeviceFinderWnd.h>
 #include <stdint.h>
+#include <cstring>
 #include <cstdio>
 #include <windows.h>
 #include "BuiltInTestsDef.h"
@@ -23,6 +24,7 @@ void DisplayIntegerValue(PvGenParameterArray *deviceParams, PvString regName, co
 void DisplayBooleanValue(PvGenParameterArray *deviceParams, PvString regName);
 void DisplayEnumValue(PvGenParameterArray *deviceParams, PvString regName);
 void DisplayIpAddressValue(PvGenParameterArray *deviceParams, PvString regName);
+void DisplayNTxMiniInfo(PvGenParameterArray *deviceParams);
 void DisplayStorageInfo(PvGenParameterArray *deviceParams);
 void DisplayCLinkInfo(PvGenParameterArray *deviceParams);
 bool DisplayError(PvGenParameterArray *deviceParams);
@@ -52,15 +54,8 @@ int main(int argc, char *argv[])
 
 	printf("\n");
 
-	// NTX-Mini platform
-	int64_t IPEngineDeviceID;
-	const char *ntxPlatforms[] = { "PT01-PBXMX1-32XG33-v1.24.0", "PT01-PBXMX4-32XG33-v0.5.0" };
-	int ntxPlatformSel;
-	deviceParams->GetIntegerValue("IPEngineDeviceID", IPEngineDeviceID);
-	if (IPEngineDeviceID == 20) ntxPlatformSel = 0;
-	if (IPEngineDeviceID == 34) ntxPlatformSel = 1;
-	printf("NTX-Mini Platform: %s\n", ntxPlatforms[ntxPlatformSel]);
-
+	// NTx-Mini information
+	DisplayNTxMiniInfo(deviceParams);
 	printf("\n");
 	
 	// Serial number
@@ -92,7 +87,7 @@ int main(int argc, char *argv[])
 	deviceParams->GetIntegerValue("DeviceXMLMajorVersion", deviceXMLVersion[verMajor]);
 	deviceParams->GetIntegerValue("DeviceXMLMinorVersion", deviceXMLVersion[verMinor]);
 	deviceParams->GetIntegerValue("DeviceXMLSubMinorVersion", deviceXMLVersion[verSubMinor]);
-	printf("XML Version: %d.%d.%d\n", (uint32_t) deviceXMLVersion[verMajor], (uint32_t) deviceXMLVersion[verMinor], (uint32_t) deviceXMLVersion[verSubMinor]);
+	printf("Camera XML Version: %d.%d.%d\n", (uint32_t) deviceXMLVersion[verMajor], (uint32_t) deviceXMLVersion[verMinor], (uint32_t) deviceXMLVersion[verSubMinor]);
 
 	printf("\n");
 
@@ -376,6 +371,39 @@ void DisplayIpAddressValue(PvGenParameterArray *deviceParams, PvString regName)
 		regValueBytes[3], regValueBytes[2], regValueBytes[1], regValueBytes[0]);
 }
 
+void DisplayNTxMiniInfo(PvGenParameterArray *deviceParams)
+{
+	// NTx-Mini platform
+	int64_t IPEngineDeviceID;
+	int ntxPlatformSel;
+	const char *ntxPlatforms[] = { "PT01-PBXMX1-32XG33-v1.24.0", "PT01-PBXMX4-32XG33-v0.5.0" };
+	deviceParams->GetIntegerValue("IPEngineDeviceID", IPEngineDeviceID);
+	if (IPEngineDeviceID == 20) ntxPlatformSel = 0;
+	if (IPEngineDeviceID == 34) ntxPlatformSel = 1;
+	printf("NTx-Mini Platform: %s\n", ntxPlatforms[ntxPlatformSel]);
+
+	// NTx-Mini XML version
+	PvString gevFirstURL;
+	char *s, *tok;
+	int ntxMiniXmlMajorVersion;
+	int ntxMiniXmlMinorVersion;
+	int ntxMiniXmlSubMinorVersion;
+	#if (VERSION_MAJOR == 4) || (VERSION_MAJOR == 5)
+		deviceParams->GetStringValue("GevFirstURL", gevFirstURL);
+	#else
+		deviceParams->GetString("GevFirstURL", gevFirstURL);
+	#endif
+	s = strdup(gevFirstURL.GetAscii());
+	tok = strtok(s, "_");
+	tok = strtok(NULL, "_");
+	sscanf(tok, "%d", &ntxMiniXmlMajorVersion);
+	tok = strtok(NULL, "_");
+	sscanf(tok, "%d", &ntxMiniXmlMinorVersion);
+	tok = strtok(NULL, "_");
+	sscanf(tok, "%d", &ntxMiniXmlSubMinorVersion);
+	printf("NTx-Mini XML Version: %d.%d.%d\n", ntxMiniXmlMajorVersion, ntxMiniXmlMinorVersion, ntxMiniXmlSubMinorVersion);
+	free(s);
+}
 
 void DisplayStorageInfo(PvGenParameterArray *deviceParams)
 {
