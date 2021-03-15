@@ -31,7 +31,7 @@ int main()
 	// Detect NTX-Mini platform
 	deviceParams->GetIntegerValue("IPEngineDeviceID", IPEngineDeviceID);
 	if (IPEngineDeviceID == 20) retval = EXIT_PBXMX1;
-	if (IPEngineDeviceID == 34) retval = EXIT_PBXMX4;
+	else if (IPEngineDeviceID == 34) retval = EXIT_PBXMX4;
 	else retval = EXIT_FAILURE;
 
 	// Return exit code to OS
