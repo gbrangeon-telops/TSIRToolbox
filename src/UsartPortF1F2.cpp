@@ -7,6 +7,8 @@
 
 using namespace std;
 
+#define REQUEST_TIMEOUT 300000
+
 UsartPortF1F2::UsartPortF1F2() :
 	UsartPort(), 
    m_maxRetry(UPF1F2_DEFAULT_MAX_RETRY)
@@ -339,7 +341,7 @@ IRC_Status_t UsartPortF1F2::FileCheckRequest(const uint32_t index, uint16_t *p_c
    request.cmd = F1F2_CMD_FILE_CHECK_REQ;
 	request.payload.fileIndex.index = index;
 
-	status = SendRecvF1F2(&request, &response, 60000);
+	status = SendRecvF1F2(&request, &response, REQUEST_TIMEOUT);
 	if ((status != IRC_SUCCESS) || (response.cmd != F1F2_CMD_FILE_CHECK_RSP))
 	{
 		UPF1F2_ERR("File check request failed.");
