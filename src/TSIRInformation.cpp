@@ -123,6 +123,13 @@ int main(int argc, char *argv[])
 
 	printf("\n");
 
+	// Calibration memory configuration
+	bool mem4DDRIsImplemented;
+	deviceParams->GetBooleanValue("Mem4DDRIsImplemented", mem4DDRIsImplemented);
+	printf("Calibration Memory: %s\n", (mem4DDRIsImplemented) ? "4xDDR3" : "2xDDR3");
+
+	printf("\n");
+
 	// Device status
 	int64_t tdcStatus;
 	deviceParams->GetIntegerValue("TDCStatus", tdcStatus);
