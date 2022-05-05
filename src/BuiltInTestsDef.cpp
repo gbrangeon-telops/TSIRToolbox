@@ -71,12 +71,12 @@ void DisplayBuiltInTestsResults(uint32_t builtInTestsResultsRegValue, uint32_t b
 		"DeviceKeyValidation",
 		"SensorInitialization",
 		"DeviceSerialPortsInitialization",
-		"",
-		"",
-		"",
+		"BoardRevisionValidation",
+		"MotorizedLensInitialization",
+		"AutofocusModuleInitialization",
 
 		// DeviceBuiltInTestsResults4
-		"",
+		"FrameBufferInitialization",
 		"",
 		"",
 		"",

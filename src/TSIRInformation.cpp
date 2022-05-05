@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
 	// Calibration memory configuration
 	bool mem4DDRIsImplemented;
 	deviceParams->GetBooleanValue("Mem4DDRIsImplemented", mem4DDRIsImplemented);
-	printf("Calibration Memory: %s\n", (mem4DDRIsImplemented) ? "4xDDR3" : "2xDDR3");
+	printf("Calibration Memory: %s\n", (mem4DDRIsImplemented) ? "4 DDR3" : "2 DDR3");
 
 	printf("\n");
 
@@ -167,7 +167,7 @@ int main(int argc, char *argv[])
 		sprintf_s(strDeviceBuiltInTestsResultsRegName, "DeviceBuiltInTestsResults%d", i + 1);
 		deviceParams->GetIntegerValue(strDeviceBuiltInTestsResultsRegName, deviceBuiltInTestsResults[i]);
 
-		printf("DeviceBuiltInTestsResults%d: 0x%08X\n", i, deviceBuiltInTestsResults[i]);
+		printf("DeviceBuiltInTestsResults%d: 0x%08X\n", i+1, deviceBuiltInTestsResults[i]);
 		DisplayBuiltInTestsResults((uint32_t) deviceBuiltInTestsResults[i], i);
 
 		printf("\n");
