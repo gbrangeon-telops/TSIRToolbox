@@ -3,6 +3,7 @@
 #include <PvDeviceFinderWnd.h>
 #include <stdint.h>
 #include <cstring>
+#include <ctime>
 #include <cstdio>
 #include <windows.h>
 #include "BuiltInTestsDef.h"
@@ -37,8 +38,22 @@ int main(int argc, char *argv[])
 {
 	PvResult result;
 	FileManager fm;
+	time_t t;
+	struct tm *tm;
+	char *datestr;
+	size_t len;
 
+	// Get current date (UTC)
+	t = time(NULL);
+	tm = gmtime(&t);
+	datestr = asctime(tm);
+	len = strlen(datestr);
+	datestr[len-1] = '\0';   // remove superfluous end of line
+
+	// Display start
 	printf("TS-IR Information (TSIR Toolbox v%d.%d.%d.%d%s)\n", TSIR_TOOLBOX_MAJOR_VERSION, TSIR_TOOLBOX_MINOR_VERSION, TSIR_TOOLBOX_SUBMINOR_VERSION, SVN_SOFTWARE_REV, SVN_SOFTWARE_MODIFIED);
+	printf("Report Date: %s (UTC)\n", datestr);
+
 		
 	if (fm.Open() != IRC_SUCCESS)
 	{
