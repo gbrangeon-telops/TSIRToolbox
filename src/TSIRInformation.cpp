@@ -40,21 +40,21 @@ int main(int argc, char *argv[])
 	FileManager fm;
 	time_t t;
 	struct tm *tm;
-	char *datestr;
-	size_t len;
-
-	// Get current date (UTC)
+	long int tzhour, tzmin;
+	
+	// Get current date (local timezone)
 	t = time(NULL);
-	tm = gmtime(&t);
-	datestr = asctime(tm);
-	len = strlen(datestr);
-	datestr[len-1] = '\0';   // remove superfluous end of line
+	tm = localtime(&t);
 
 	// Display start
 	printf("TS-IR Information (TSIR Toolbox v%d.%d.%d.%d%s)\n", TSIR_TOOLBOX_MAJOR_VERSION, TSIR_TOOLBOX_MINOR_VERSION, TSIR_TOOLBOX_SUBMINOR_VERSION, SVN_SOFTWARE_REV, SVN_SOFTWARE_MODIFIED);
-	printf("Report Date: %s (UTC)\n", datestr);
 
-		
+	// Display local time
+	tzhour = -_timezone / 3600;
+	tzmin = (_timezone % 3600) / 60;
+	printf("Report Date: %04d-%02d-%02dT%02d:%02d:%02d%0+3ld:%02ld\n", tm->tm_year+1900, tm->tm_mon+1, tm->tm_mday, tm->tm_hour, tm->tm_min, tm->tm_sec,
+		tzhour, tzmin);
+
 	if (fm.Open() != IRC_SUCCESS)
 	{
 		fprintf(stderr, "Unable to open port.\n");
