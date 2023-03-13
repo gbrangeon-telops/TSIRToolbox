@@ -34,7 +34,7 @@ void DisplayBuiltInTestsResults(uint32_t builtInTestsResultsRegValue, uint32_t b
 		"FlashSettingsManagerInitialization",
 		"FileSystemInitialization",
 		"FileManagerInitialization",
-		"QSPIFlashInerfaceInitialization",
+		"QSPIFlashInterfaceInitialization",
 		"FirmwareUpdaterInitialization",
 		"FANControllerInitialization",
 		"EHDRIControllerInitialization",
