@@ -4,6 +4,7 @@
 #include "TSIRToolbox.h"
 #include <sstream>
 #include <string>
+#include <cstring>
 
 enum {
    FU_CMD_PROGRAM_PROM,
@@ -37,10 +38,10 @@ cmdlOptDesc_t fuOptDesc[FU_OPT_NUMOF] =
 char helpString[] = 
 	"TS-IR Firmware Updater (TSIR Toolbox v%d.%d.%d.%d%s)\n"
    "\n"
-   "tsirfu [command] [command_args] [options]\n"
+	"tsirfu [command] [command_args] [options]\n"
    "\n"
    "Commands:\n"
-   "   -p dev filename                  Programs PROM file into device PROM.\n"
+	"  -p dev filename                  Programs PROM file into device PROM.\n"
    "\n"
    "   -r dev addr byteCount filename   Reads byteCount bytes in device PROM\n"
    "                                    at specified address and writes data\n"
@@ -106,6 +107,8 @@ IRC_Status_t FirmwareUpdaterProgramPROM(cmdlCommand_t *cmd)
 {
    FirmwareUpdater fu;
    unsigned int i;
+   char *dev = cmd->command.args[0];
+   char *filename = cmd->command.args[1];
    unsigned int maxPacketSize = FU_DEFAULT_WRITE_MAX_PACKET_SIZE;
    FirmwareUpdater::fuDevideID_t id;
    bool error = false;
@@ -137,12 +140,21 @@ IRC_Status_t FirmwareUpdaterProgramPROM(cmdlCommand_t *cmd)
    }
 
    // Validate device ID
-   if (FirmwareUpdaterValidateDeviceID(cmd->command.args[0], &id) != IRC_SUCCESS)
+   if (FirmwareUpdaterValidateDeviceID(dev, &id) != IRC_SUCCESS)
    {
       return IRC_FAILURE;
    }
 
-   if (fu.ProgramPROM(id, cmd->command.args[1], false, maxPacketSize) != IRC_SUCCESS)
+   // Verify coherence of FPGA device with MCS file
+   if ((id == FirmwareUpdater::FUDID_PROCESSING_FPGA && !strstr(filename, "proc")) ||
+	   (id == FirmwareUpdater::FUDID_OUTPUT_FPGA && !strstr(filename, "output")) ||
+	   (id == FirmwareUpdater::FUDID_STORAGE_FPGA && !strstr(filename, "storage")))
+   {
+		fprintf(stderr, "MCS file does not match destination FPGA. Programming the wrong FPGA could damage a board!\n");
+		return IRC_FAILURE;
+   }
+
+   if (fu.ProgramPROM(id, filename, false, maxPacketSize) != IRC_SUCCESS)
    {
       error = true;
    }
