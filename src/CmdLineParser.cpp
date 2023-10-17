@@ -63,7 +63,7 @@ IRC_Status_t ParseOptions(unsigned int argc, char *argv[], const cmdlOptDesc_t c
             }
 
             p_option->code = cmdlOptDesc[i].code;
-				p_option->numOfArgs = cmdlOptDesc[i].numOfArgs;
+			p_option->numOfArgs = cmdlOptDesc[i].numOfArgs;
             for (j = 0; j < cmdlOptDesc[i].numOfArgs; j++)
 				{
 					p_option->args[j] = argv[argi + 1 + j];
