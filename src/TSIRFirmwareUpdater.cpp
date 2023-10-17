@@ -41,7 +41,7 @@ char helpString[] =
 	"tsirfu {command} {command_args} [options]\n"
    "\n"
    "Commands:\n"
-	"  -p [dev] filename                Programs PROM file into device PROM.\n"
+   "   -p [dev] filename                Programs PROM file into device PROM.\n"
    "\n"
    "   -r dev addr byteCount filename   Reads byteCount bytes in device PROM\n"
    "                                    at specified address and writes data\n"
