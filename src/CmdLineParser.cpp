@@ -33,7 +33,7 @@ IRC_Status_t ParseOptions(unsigned int argc, char *argv[], const cmdlOptDesc_t c
 			{
 				optionIsValid = true;
 
-				if (argc - (argi + 1) < cmdlOptDesc[i].numOfArgsMin)
+				if (argc - (argi + 1) < cmdlOptDesc[i].numOfArgs)
 				{
 					printf("Not enough arguments for -%c.\n", cmdlOptDesc[i].c);
 					return IRC_FAILURE;
@@ -56,20 +56,20 @@ IRC_Status_t ParseOptions(unsigned int argc, char *argv[], const cmdlOptDesc_t c
 						break;
 				}
 
-            if (cmdlOptDesc[i].numOfArgsMax > CMDL_MAX_NUMOF_ARGS)
+            if (cmdlOptDesc[i].numOfArgs > CMDL_MAX_NUMOF_ARGS)
             {
-               printf("Number of arguments (%d) exceeds maximum number of arguments (%d)\n", cmdlOptDesc[i].numOfArgsMax, CMDL_MAX_NUMOF_ARGS);
+               printf("Number of arguments (%d) exceeds maximum number of arguments (%d)\n", cmdlOptDesc[i].numOfArgs, CMDL_MAX_NUMOF_ARGS);
                return IRC_FAILURE;
             }
 
             p_option->code = cmdlOptDesc[i].code;
-			p_option->numOfArgs = argc - 2;
-            for (j = 0; j < p_option->numOfArgs; j++)
+				p_option->numOfArgs = cmdlOptDesc[i].numOfArgs;
+            for (j = 0; j < cmdlOptDesc[i].numOfArgs; j++)
 				{
 					p_option->args[j] = argv[argi + 1 + j];
 				}
 
-				argi += (1 + p_option->numOfArgs);
+				argi += (1 + cmdlOptDesc[i].numOfArgs);
 				break;
 			}
 		}

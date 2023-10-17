@@ -32,8 +32,7 @@ typedef struct {
 	unsigned int code;
 	cmdlOptType_t type;
 	char c;
-	unsigned int numOfArgsMin;
-	unsigned int numOfArgsMax;
+	unsigned int numOfArgs;
 	cmdlCmdFunc_t func;
 } cmdlOptDesc_t;
 
