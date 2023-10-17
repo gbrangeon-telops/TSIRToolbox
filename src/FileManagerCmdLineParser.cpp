@@ -11,18 +11,18 @@
 
 cmdlOptDesc_t fmtbOptDesc[FMCLP_OPT_NUMOF] =
 {
-	{FMCLP_CMD_FILE_LIST,		CMDL_TYP_COMMAND,	'l', 0, FileManagerFileList},
-	{FMCLP_CMD_FILE_READ,		CMDL_TYP_COMMAND,	'r', 2, FileManagerFileRead},
-	{FMCLP_CMD_FILE_WRITE,		CMDL_TYP_COMMAND,	'w', 1, FileManagerFileWrite},
-	{FMCLP_CMD_FILE_CHECK,		CMDL_TYP_COMMAND,	'c', 1, FileManagerFileCheck},
-	{FMCLP_CMD_FILE_DELETE,		CMDL_TYP_COMMAND,	'd', 1, FileManagerFileDelete},
-	{FMCLP_CMD_FILE_FORMAT,		CMDL_TYP_COMMAND,	'f', 0, FileManagerFileFormat},
-	{FMCLP_CMD_PING,			CMDL_TYP_COMMAND,	'p', 0, FileManagerPing},
-	{FMCLP_CMD_TX_HEX,			CMDL_TYP_COMMAND,	'x', 1, FileManagerTxHex},
-	{FMCLP_CMD_TEST,			CMDL_TYP_COMMAND,	't', 2, FileManagerTest},
-	{FMCLP_CMD_HELP,			CMDL_TYP_COMMAND,	'h', 0, FileManagerHelp},
-	{FMCLP_OPT_VERBOSE,			CMDL_TYP_OPTION,	'v', 0, nullptr},
-	{FMCLP_OPT_MAX_PACKET_SIZE, CMDL_TYP_OPTION,	'm', 1, nullptr}
+	{FMCLP_CMD_FILE_LIST,		CMDL_TYP_COMMAND,	'l', 0, 0, FileManagerFileList},
+	{FMCLP_CMD_FILE_READ,		CMDL_TYP_COMMAND,	'r', 2, 2, FileManagerFileRead},
+	{FMCLP_CMD_FILE_WRITE,		CMDL_TYP_COMMAND,	'w', 1, 1, FileManagerFileWrite},
+	{FMCLP_CMD_FILE_CHECK,		CMDL_TYP_COMMAND,	'c', 1, 1, FileManagerFileCheck},
+	{FMCLP_CMD_FILE_DELETE,		CMDL_TYP_COMMAND,	'd', 1, 1, FileManagerFileDelete},
+	{FMCLP_CMD_FILE_FORMAT,		CMDL_TYP_COMMAND,	'f', 0, 0, FileManagerFileFormat},
+	{FMCLP_CMD_PING,			CMDL_TYP_COMMAND,	'p', 0, 0, FileManagerPing},
+	{FMCLP_CMD_TX_HEX,			CMDL_TYP_COMMAND,	'x', 1, 1, FileManagerTxHex},
+	{FMCLP_CMD_TEST,			CMDL_TYP_COMMAND,	't', 2, 2, FileManagerTest},
+	{FMCLP_CMD_HELP,			CMDL_TYP_COMMAND,	'h', 0, 0, FileManagerHelp},
+	{FMCLP_OPT_VERBOSE,			CMDL_TYP_OPTION,	'v', 0, 0, nullptr},
+	{FMCLP_OPT_MAX_PACKET_SIZE, CMDL_TYP_OPTION,	'm', 1, 1, nullptr}
 };
 
 IRC_Status_t FileManagerFileList(cmdlCommand_t *cmd)

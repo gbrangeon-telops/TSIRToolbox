@@ -26,22 +26,22 @@ IRC_Status_t FirmwareUpdaterValidateDeviceID(char *buffer, FirmwareUpdater::fuDe
 
 cmdlOptDesc_t fuOptDesc[FU_OPT_NUMOF] =
 {
-   {FU_CMD_PROGRAM_PROM,      CMDL_TYP_COMMAND, 'p',  2, FirmwareUpdaterProgramPROM},
-   {FU_CMD_READ_PROM,         CMDL_TYP_COMMAND, 'r',  4, FirmwareUpdaterReadPROM},
-   {FU_CMD_VERIFY_PROM,       CMDL_TYP_COMMAND, 'y',  2, FirmwareUpdaterVerifyPROM},
-   {FU_CMD_CHECK_PROM,        CMDL_TYP_COMMAND, 'c',  3, FirmwareUpdaterCheckPROM},
-   {FU_CMD_HELP,              CMDL_TYP_COMMAND, 'h',  0, FirmwareUpdaterHelp},
-   {FU_OPT_VERBOSE,           CMDL_TYP_OPTION,  'v',  0, nullptr},
-   {FU_OPT_MAX_PACKET_SIZE,   CMDL_TYP_OPTION,  'm',  1, nullptr}
+   {FU_CMD_PROGRAM_PROM,      CMDL_TYP_COMMAND, 'p',  1, 2, FirmwareUpdaterProgramPROM},
+   {FU_CMD_READ_PROM,         CMDL_TYP_COMMAND, 'r',  4, 4, FirmwareUpdaterReadPROM},
+   {FU_CMD_VERIFY_PROM,       CMDL_TYP_COMMAND, 'y',  2, 2, FirmwareUpdaterVerifyPROM},
+   {FU_CMD_CHECK_PROM,        CMDL_TYP_COMMAND, 'c',  3, 3, FirmwareUpdaterCheckPROM},
+   {FU_CMD_HELP,              CMDL_TYP_COMMAND, 'h',  0, 0, FirmwareUpdaterHelp},
+   {FU_OPT_VERBOSE,           CMDL_TYP_OPTION,  'v',  0, 0, nullptr},
+   {FU_OPT_MAX_PACKET_SIZE,   CMDL_TYP_OPTION,  'm',  1, 1, nullptr}
 };
 
 char helpString[] = 
 	"TS-IR Firmware Updater (TSIR Toolbox v%d.%d.%d.%d%s)\n"
    "\n"
-	"tsirfu [command] [command_args] [options]\n"
+	"tsirfu {command} {command_args} [options]\n"
    "\n"
    "Commands:\n"
-	"  -p dev filename                  Programs PROM file into device PROM.\n"
+	"  -p [dev] filename                Programs PROM file into device PROM.\n"
    "\n"
    "   -r dev addr byteCount filename   Reads byteCount bytes in device PROM\n"
    "                                    at specified address and writes data\n"
@@ -107,8 +107,8 @@ IRC_Status_t FirmwareUpdaterProgramPROM(cmdlCommand_t *cmd)
 {
    FirmwareUpdater fu;
    unsigned int i;
-   char *dev = cmd->command.args[0];
-   char *filename = cmd->command.args[1];
+   char *dev = nullptr;
+   char *filename = nullptr;
    unsigned int maxPacketSize = FU_DEFAULT_WRITE_MAX_PACKET_SIZE;
    FirmwareUpdater::fuDevideID_t id;
    bool error = false;
@@ -139,10 +139,25 @@ IRC_Status_t FirmwareUpdaterProgramPROM(cmdlCommand_t *cmd)
       }
    }
 
-   // Validate device ID
-   if (FirmwareUpdaterValidateDeviceID(dev, &id) != IRC_SUCCESS)
+   // Verify if automatic detection is requested
+   if (cmd->command.numOfArgs == 1)
    {
-      return IRC_FAILURE;
+	   filename = cmd->command.args[0];
+
+	   if (strstr(filename, "proc")) id = FirmwareUpdater::FUDID_PROCESSING_FPGA;
+	   if (strstr(filename, "output")) id = FirmwareUpdater::FUDID_OUTPUT_FPGA;
+	   if (strstr(filename, "storage")) id = FirmwareUpdater::FUDID_STORAGE_FPGA;
+   }
+   else
+   {
+	   dev = cmd->command.args[0];
+	   filename = cmd->command.args[1];
+
+	   // Validate device ID
+	   if (FirmwareUpdaterValidateDeviceID(dev, &id) != IRC_SUCCESS)
+	   {
+		   return IRC_FAILURE;
+	   }
    }
 
    // Verify coherence of FPGA device with MCS file
