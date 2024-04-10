@@ -10,7 +10,7 @@ using namespace std;
 
 #define EXIT_PBXMX1 0
 #define EXIT_PBXMX4 1
-#define EXIT_FAILURE 255
+#define EXIT_ERROR 255
 
 int main()
 {
@@ -32,7 +32,7 @@ int main()
 	deviceParams->GetIntegerValue("IPEngineDeviceID", IPEngineDeviceID);
 	if (IPEngineDeviceID == 20) retval = EXIT_PBXMX1;
 	else if (IPEngineDeviceID == 34) retval = EXIT_PBXMX4;
-	else retval = EXIT_FAILURE;
+	else retval = EXIT_ERROR;
 
 	// Return exit code to OS
 	return retval;
