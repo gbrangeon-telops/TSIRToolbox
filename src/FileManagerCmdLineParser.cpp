@@ -422,7 +422,7 @@ IRC_Status_t FileManagerTxHex(cmdlCommand_t *cmd)
 	unsigned int i;
 	unsigned int buflen;
 	unsigned char *outBuffer;
-	unsigned char inBuffer[FMCLP_BUFFER_SIZE];
+	static unsigned char inBuffer[FMCLP_BUFFER_SIZE];
 	char *strHexMsg;
 	unsigned int bytesCount;
 
@@ -515,7 +515,7 @@ IRC_Status_t FileManagerTest(cmdlCommand_t *cmd)
 	unsigned int errorCount = 0;
 	IRC_Status_t result;
 	unsigned char *outBuffer;
-	unsigned char inBuffer[FMCLP_BUFFER_SIZE];
+	static unsigned char inBuffer[FMCLP_BUFFER_SIZE];
 	unsigned int testNumber;
 
 	// Validate command code
