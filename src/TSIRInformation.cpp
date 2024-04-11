@@ -397,7 +397,7 @@ void DisplayNTxMiniInfo(PvGenParameterArray *deviceParams)
 {
 	// NTx-Mini platform
 	int64_t IPEngineDeviceID;
-	int ntxPlatformSel;
+	int ntxPlatformSel = 0 ;
 	const char *ntxPlatforms[] = { "PT01-PBXMX1-32XG33-v1.24.0", "PT01-PBXMX4-32XG33-v0.5.0" };
 	deviceParams->GetIntegerValue("IPEngineDeviceID", IPEngineDeviceID);
 	if (IPEngineDeviceID == 20) ntxPlatformSel = 0;
@@ -415,7 +415,7 @@ void DisplayNTxMiniInfo(PvGenParameterArray *deviceParams)
 	#else
 		deviceParams->GetString("GevFirstURL", gevFirstURL);
 	#endif
-	s = strdup(gevFirstURL.GetAscii());
+	s = _strdup(gevFirstURL.GetAscii());
 	tok = strtok(s, "_");
 	tok = strtok(NULL, "_");
 	sscanf(tok, "%d", &ntxMiniXmlMajorVersion);
