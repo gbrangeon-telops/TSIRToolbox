@@ -23,6 +23,11 @@
 
 #define PRINTF			std::printf
 #define DUMMY_PRINTF	// std::printf
+#ifdef _WIN64
+	#define SIZESPEC "%llu"
+#else
+	#define SIZESPEC "%u"
+#endif
 #define MAX(a,b) (a>b? a : b) /**< Find maximum between to number */
 #define MIN(a,b) (a>b? b : a) /**< Find minimum between to number */
 
@@ -40,7 +45,6 @@
 #define bitIsOn(bitField, bitNumber) (((uint32_t)bitField & (1 << bitNumber)) == (1 << bitNumber))
 
 #define numof(x) (sizeof(x) / sizeof(x[0]))
-
 
 uint8_t Hex2Val(const char x);
 uint8_t Hex2Byte(const char *buffer);

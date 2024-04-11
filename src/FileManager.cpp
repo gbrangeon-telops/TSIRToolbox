@@ -81,7 +81,7 @@ IRC_Status_t FileManager::FileList()
 		PRINTF("%s", fileInfoListIterator->type);
 		PRINTF("\n");
 	}
-	PRINTF("%llu file(s)\n", fileInfoList.size());
+	PRINTF(SIZESPEC " file(s)\n", fileInfoList.size());
 
 	bool spaceInfoAvail = true;
 	uint64_t spaceTotal, spaceUsed, spaceFree;
@@ -255,7 +255,7 @@ IRC_Status_t FileManager::FileRead(const char *src_filename, const char *dest_fi
 		PRINTF("%d file(s) out of ", fileTransferred);
 	}
 
-	PRINTF("%llu file(s) transferred in %.3fs\n", fileList.size(), (double)(clock() - tStart)/CLOCKS_PER_SEC);
+	PRINTF(SIZESPEC " file(s) transferred in %.3fs\n", fileList.size(), (double)(clock() - tStart)/CLOCKS_PER_SEC);
 
 	if (errorCount > 0)
 	{
@@ -413,7 +413,7 @@ IRC_Status_t FileManager::FileWrite(const char *src_filename, const unsigned int
 		PRINTF("%d file(s) out of ", fileTransferred);
 	}
 
-	PRINTF("%llu file(s) transferred in %.3fs\n", fileList.size(), (double)(clock() - tStart)/CLOCKS_PER_SEC);
+	PRINTF(SIZESPEC " file(s) transferred in %.3fs\n", fileList.size(), (double)(clock() - tStart)/CLOCKS_PER_SEC);
 
 	if (errorCount > 0)
 	{
