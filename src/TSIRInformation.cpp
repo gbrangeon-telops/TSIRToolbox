@@ -182,7 +182,7 @@ int main(int argc, char *argv[])
 		sprintf_s(strDeviceBuiltInTestsResultsRegName, "DeviceBuiltInTestsResults%d", i + 1);
 		deviceParams->GetIntegerValue(strDeviceBuiltInTestsResultsRegName, deviceBuiltInTestsResults[i]);
 
-		printf("DeviceBuiltInTestsResults%d: 0x%08X\n", i+1, deviceBuiltInTestsResults[i]);
+		printf("DeviceBuiltInTestsResults%u: 0x%08X\n", i+1, (uint32_t) deviceBuiltInTestsResults[i]);
 		DisplayBuiltInTestsResults((uint32_t) deviceBuiltInTestsResults[i], i);
 
 		printf("\n");
@@ -445,9 +445,9 @@ void DisplayStorageInfo(PvGenParameterArray *deviceParams)
 		totalSpace = (highRegValue << 32) | lowRegValue;
 
 		if ((totalSpace >> 20) >= 1024)
-			printf("Available memory: %d GB\n", totalSpace >> 30);
+			printf("Available memory: %lld GB\n", totalSpace >> 30);
 		else
-			printf("Available memory: %d MB\n", totalSpace >> 20);
+			printf("Available memory: %lld MB\n", totalSpace >> 20);
 	}
 	else 
 		printf("Available memory: %d GB\n", externalMemoryBufferIsImplemented ? 16 : 1);
