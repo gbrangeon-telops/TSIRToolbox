@@ -22,6 +22,7 @@ typedef enum {
 /* Prototypes */
 void DisplaySelectorValues(PvGenParameterArray *deviceParams, PvString selectorName);
 void DisplayIntegerValue(PvGenParameterArray *deviceParams, PvString regName, const char *unit = nullptr);
+void DisplayFloatValue(PvGenParameterArray* deviceParams, PvString regName);
 void DisplayBooleanValue(PvGenParameterArray *deviceParams, PvString regName);
 void DisplayEnumValue(PvGenParameterArray *deviceParams, PvString regName);
 void DisplayIpAddressValue(PvGenParameterArray *deviceParams, PvString regName);
@@ -122,11 +123,15 @@ int main(int argc, char *argv[])
 
 	printf("\n");
 
-	// Running time
+	// Device statistics
 	DisplayIntegerValue(deviceParams, "DeviceRunningTime", "s");
 	DisplayIntegerValue(deviceParams, "DevicePowerOnCycles");
+	
+	// Cooler statistics
 	DisplayIntegerValue(deviceParams, "DeviceCoolerRunningTime", "s");
 	DisplayIntegerValue(deviceParams, "DeviceCoolerPowerOnCycles");
+	DisplayIntegerValue(deviceParams, "DeviceStabilizationTime", "s");
+	DisplayFloatValue(deviceParams, "DeviceStabilizationDeltaTemperature");
 
 	printf("\n");
 
@@ -341,6 +346,25 @@ void DisplayIntegerValue(PvGenParameterArray *deviceParams, PvString regName, co
 	else
 		printf("%s: %d\n", regDisplayName.GetAscii(), (uint32_t)regValue);
 }
+
+void DisplayFloatValue(PvGenParameterArray* deviceParams, PvString regName)
+{
+	PvGenFloat* p_node = deviceParams->GetFloat(regName);
+	if (p_node == NULL) return;
+
+	PvString regDisplayName;
+	p_node->GetDisplayName(regDisplayName);
+
+	double regValue;
+	p_node->GetValue(regValue);
+
+	PvString unit;
+	p_node->GetUnit(unit);
+
+	printf("%s: %0.2f %s\n", regDisplayName.GetAscii(), regValue, unit.GetAscii());
+}
+
+
 
 void DisplayBooleanValue(PvGenParameterArray *deviceParams, PvString regName)
 {
