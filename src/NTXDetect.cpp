@@ -5,11 +5,13 @@
 #include "BuildInfo.h"
 #include "TSIRToolbox.h"
 #include "FileManager.h"
+#include "Pleora.h"
 
 using namespace std;
 
 #define EXIT_PBXMX1 0
 #define EXIT_PBXMX4 1
+#define EXIT_PBXMX6 2
 #define EXIT_ERROR 255
 
 int main()
@@ -30,9 +32,23 @@ int main()
 
 	// Detect NTX-Mini platform
 	deviceParams->GetIntegerValue("IPEngineDeviceID", IPEngineDeviceID);
-	if (IPEngineDeviceID == 20) retval = EXIT_PBXMX1;
-	else if (IPEngineDeviceID == 34) retval = EXIT_PBXMX4;
-	else retval = EXIT_ERROR;
+	switch (IPEngineDeviceID)
+	{
+	case PBXMX1_ENGINE_DEV_ID:
+		retval = EXIT_PBXMX1;
+		break;
+
+	case PBXMX4_ENGINE_DEV_ID:
+		retval = EXIT_PBXMX4;
+		break;
+
+	case PBXMX6_ENGINE_DEV_ID:
+		retval = EXIT_PBXMX6;
+		break;
+
+	default:
+		retval = EXIT_ERROR;
+	}
 
 	// Return exit code to OS
 	return retval;

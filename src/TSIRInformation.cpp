@@ -11,6 +11,7 @@
 #include "BuildInfo.h"
 #include "TSIRToolbox.h"
 #include "FileManager.h"
+#include "Pleora.h"
 
 typedef enum {
 	verMajor = 0,
@@ -422,10 +423,13 @@ void DisplayNTxMiniInfo(PvGenParameterArray *deviceParams)
 	// NTx-Mini platform
 	int64_t IPEngineDeviceID;
 	int ntxPlatformSel = 0 ;
-	const char *ntxPlatforms[] = { "PT01-PBXMX1-32XG33-v1.24.0", "PT01-PBXMX4-32XG33-v0.5.0" };
+	const char *ntxPlatforms[] = { "Unknown", "PT01-PBXMX1-32XG33-v1.24.0", "PT01-PBXMX4-32XG33-v0.5.0", 
+								   "PT01_PBXMX6_32XG33.v0_2_0u"};
+
 	deviceParams->GetIntegerValue("IPEngineDeviceID", IPEngineDeviceID);
-	if (IPEngineDeviceID == 20) ntxPlatformSel = 0;
-	if (IPEngineDeviceID == 34) ntxPlatformSel = 1;
+	if (IPEngineDeviceID == PBXMX1_ENGINE_DEV_ID) ntxPlatformSel = 1;
+	if (IPEngineDeviceID == PBXMX4_ENGINE_DEV_ID) ntxPlatformSel = 2;
+	if (IPEngineDeviceID == PBXMX6_ENGINE_DEV_ID) ntxPlatformSel = 3;
 	printf("NTx-Mini Platform: %s\n", ntxPlatforms[ntxPlatformSel]);
 
 	// NTx-Mini XML version

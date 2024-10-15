@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="..\src\CRC.h" />
     <ClInclude Include="..\src\FileManager.h" />
+    <ClInclude Include="..\src\Pleora.h" />
     <ClInclude Include="..\src\Protocol_F1F2.h" />
     <ClInclude Include="..\src\TDCStatusDef.h" />
     <ClInclude Include="..\src\TSIRToolbox.h" />
